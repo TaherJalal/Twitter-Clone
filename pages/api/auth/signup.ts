@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { object, string, number, date, InferType } from "yup";
+import { object, string } from "yup";
 
 export default async function signup(
   req: NextApiRequest,
