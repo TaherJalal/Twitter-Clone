@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
+    "@react-spring/web": "^9.7.1",
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "18.15.5",
