@@ -8,34 +8,43 @@ export default async function createTweet(
   res: NextApiResponse
 ) {
   const token = req.headers.authorization?.split(" ")[1];
+
+  if(!token){
+    res.status(401).send("UnAuthorized")
+  }
+
   const userId = await auth(token);
   const { content } = req.body;
 
-  try {
-    const tweetSchema = object({
-      content: string()
-        .min(1)
-        .max(255)
-        .required("A tweet must be between 1 to 255 characters"),
-    });
-
-    const validated = tweetSchema.validate(req.body, {
-      abortEarly: false,
-    });
-
-    const tweet = await prisma.tweet.create({
-      data: {
-        content,
-        user: {
-          connect: {
-            id: userId as string,
+  if(req.method == "POST"){
+    
+    try {
+      const tweetSchema = object({
+        content: string()
+          .min(1)
+          .max(255)
+          .required("A tweet must be between 1 to 255 characters"),
+      });
+  
+      const validated = tweetSchema.validate(req.body, {
+        abortEarly: false,
+      });
+  
+      const tweet = await prisma.tweet.create({
+        data: {
+          content,
+          user: {
+            connect: {
+              id: userId as string,
+            },
           },
         },
-      },
-    });
-
-    res.json(tweet);
-  } catch (error) {
-    console.log(error);
+      });
+  
+      res.json(tweet);
+    } catch (error) {
+      console.log(error);
+    }
   }
+
 }

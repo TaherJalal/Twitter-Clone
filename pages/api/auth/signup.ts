@@ -41,9 +41,11 @@ export default async function signup(
         ),
     });
     const hashPassowrd = bcrypt.hashSync(password, 10);
-    const validated = await userSchema.validate(req.body, {
+
+   const x = await userSchema.validate(req.body, {
       abortEarly: false,
     });
+
     const { id } = await prisma.user.create({
       data: {
         firstName,
@@ -51,6 +53,8 @@ export default async function signup(
         username,
         email,
         password: hashPassowrd,
+        following: {create: []},
+        followers: {create: []}
       },
     });
 
