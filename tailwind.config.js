@@ -11,7 +11,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'montserrat': ['Montserrat' , 'sans-serif']
+        'montserrat': ["Montserrat" , "sans-serif"]
+    },
+    spacing:{
+      '90-h': "90vh",
+      '90-w': '90vw'
     }
     },
   },

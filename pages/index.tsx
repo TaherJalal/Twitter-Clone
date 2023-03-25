@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar'
 
 function index() {
   return (
-    <div>
+    <div className='font-montserrat'>
       <Navbar />
     </div>
   )
