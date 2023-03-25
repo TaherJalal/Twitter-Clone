@@ -26,7 +26,7 @@ function signup() {
     <>
     <Navbar />
 
-<div className='capitalize 90-h 90-w flex justify-center items-center font-montserrat'>
+<div className='capitalize h-90-h w-screen flex justify-center items-center font-montserrat'>
     
     <form onSubmit={post} className='flex flex-col gap-6 w-80 bg-purple-300 rounded-md shadow-xl p-2 transition hover:-translate-y-2 hover:ease-in-out duration-500'>
 

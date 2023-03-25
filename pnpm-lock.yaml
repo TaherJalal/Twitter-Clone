@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@next/font': ^13.2.4
   '@prisma/client': ^4.11.0
   '@react-spring/web': ^9.7.1
   '@types/bcrypt': ^5.0.0
@@ -25,6 +26,7 @@ specifiers:
   yup: ^1.0.2
 
 dependencies:
+  '@next/font': 13.2.4
   '@prisma/client': 4.11.0_prisma@4.11.0
   '@react-spring/web': 9.7.1_biqbaboplfbrettd7655fr4n2y
   '@types/bcrypt': 5.0.0
@@ -134,6 +136,10 @@ packages:
 
   /@next/env/13.2.4:
     resolution: {integrity: sha512-+Mq3TtpkeeKFZanPturjcXt+KHfKYnLlX6jMLyCrmpq6OOs4i1GqBOAauSkii9QeKCMTYzGppar21JU57b/GEA==}
+    dev: false
+
+  /@next/font/13.2.4:
+    resolution: {integrity: sha512-lMAnuOYjv5g22WhD00u0DQ9u2rTMJH0S64PKE4Sy8Y2q+FJTYs6ZHT2z3VRoI8+AOWSLK4FirpnygcjOienQ9A==}
     dev: false
 
   /@next/swc-android-arm-eabi/13.2.4:
