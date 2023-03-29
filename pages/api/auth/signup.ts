@@ -55,8 +55,8 @@ export default async function signup(
         email,
         password: hashPassowrd,
         displayImage,
-        following: { create: [] },
-        followers: { create: [] },
+        // following: { create: [] },
+        // followers: { create: {} },
       },
     });
 

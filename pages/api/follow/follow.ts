@@ -13,18 +13,38 @@ export default async function follow(
   }
 
   if (req.method !== "POST") {
-    res.status(401).send("Not a Post Request");
+    res.status(400).send("Not a POST Request");
   }
 
-  const userId = await auth(token);
+  const userId = await auth(token as string);
 
-  const follow = await prisma.user.update({
-    where: {
-      id: userId,
-    },
+  const { id } = req.body;
+
+  const follow = await prisma.follow.create({
     data: {
-      following: {
-        push: req.body.id,
+      follower: { connect: { id: userId } },
+      following: { connect: { id } },
+    },
+  });
+
+  const myFollowings = await prisma.follow.findMany({
+    where: { followerId: userId },
+  });
+
+  const isFollowed = !!(await prisma.follow.findUnique({
+    where: {
+      followerId_followingId: {
+        followerId: userId,
+        followingId: id,
+      },
+    },
+  }));
+
+  const deleteFollowing = await prisma.follow.delete({
+    where: {
+      followerId_followingId: {
+        followerId: userId,
+        followingId: id,
       },
     },
   });
