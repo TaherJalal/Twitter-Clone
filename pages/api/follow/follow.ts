@@ -20,13 +20,6 @@ export default async function follow(
 
   const { id } = req.body;
 
-  const follow = await prisma.follow.create({
-    data: {
-      follower: { connect: { id: userId } },
-      following: { connect: { id } },
-    },
-  });
-
   const isFollowed = !!(await prisma.follow.findUnique({
     where: {
       followerId_followingId: {
@@ -35,6 +28,17 @@ export default async function follow(
       },
     },
   }));
+
+  if (isFollowed) {
+    res.status(400).send("User Is Already Followed");
+  }
+
+  const follow = await prisma.follow.create({
+    data: {
+      follower: { connect: { id: userId } },
+      following: { connect: { id } },
+    },
+  });
 
   res.json(follow);
 }
