@@ -27,10 +27,6 @@ export default async function follow(
     },
   });
 
-  const myFollowings = await prisma.follow.findMany({
-    where: { followerId: userId },
-  });
-
   const isFollowed = !!(await prisma.follow.findUnique({
     where: {
       followerId_followingId: {
@@ -39,15 +35,6 @@ export default async function follow(
       },
     },
   }));
-
-  const deleteFollowing = await prisma.follow.delete({
-    where: {
-      followerId_followingId: {
-        followerId: userId,
-        followingId: id,
-      },
-    },
-  });
 
   res.json(follow);
 }
