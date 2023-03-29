@@ -10,7 +10,8 @@ export default async function signup(
 ) {
   const salt = process.env.SALT || 10;
   const secret = process.env.SECRET;
-  const { firstName, lastName, username, email, password } = req.body;
+  const { firstName, lastName, username, email, password, displayImage } =
+    req.body;
 
   try {
     const userSchema = object({
@@ -42,7 +43,7 @@ export default async function signup(
     });
     const hashPassowrd = bcrypt.hashSync(password, 10);
 
-   const x = await userSchema.validate(req.body, {
+    const validated = await userSchema.validate(req.body, {
       abortEarly: false,
     });
 
@@ -53,8 +54,9 @@ export default async function signup(
         username,
         email,
         password: hashPassowrd,
-        following: {create: []},
-        followers: {create: []}
+        displayImage,
+        following: { create: [] },
+        followers: { create: [] },
       },
     });
 
