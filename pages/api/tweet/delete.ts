@@ -20,9 +20,11 @@ export default async function deleteTweet(
 
   const { tweetId } = req.body;
 
-  const deleteTweet = await prisma.tweet.delete({
+  await prisma.tweet.delete({
     where: {
       id: tweetId,
     },
   });
+
+  res.json({ message: "Tweet Deleted" });
 }
